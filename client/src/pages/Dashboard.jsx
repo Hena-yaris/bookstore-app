@@ -1,17 +1,10 @@
-import React, { useContext } from 'react'
-import { AppState } from '../App';
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 function Dashboard() {
-  const {user} = useContext(AppState);
-  console.log(user);
-  return (
-    <>
-      <h1>Dashboard</h1>
-      <h2>selam😘 {user.username}</h2>
-      <h2>you are {user.msg}</h2>
-      <h6>😘 {user.role}</h6>
-    </>
-  );
+  const { user } = useContext(AuthContext);
+
+  return <h1>Welcome, {user?.username}!</h1>;
 }
 
-export default Dashboard
+export default Dashboard;
