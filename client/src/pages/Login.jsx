@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react"; // add useContext
 import { Link, useNavigate } from "react-router-dom";
 import axiosBase from "../api/axiosBase";
 import {
@@ -7,19 +7,18 @@ import {
   Container,
   Typography,
   Box,
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
   Snackbar,
   Alert,
   CircularProgress,
   Paper,
 } from "@mui/material";
+import { AuthContext } from "../context/AuthContext"; // ✅ import context
 
 function Login() {
   const navigate = useNavigate();
-  const [user, setUser] = useState({
+  const { setUser } = useContext(AuthContext); // ✅ get setUser from context
+
+  const [user, setUserInput] = useState({
     email: "",
     password: "",
   });
@@ -34,14 +33,13 @@ function Login() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUser((prev) => ({ ...prev, [name]: value }));
+    setUserInput((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = {};
-   
     if (!user.email) newErrors.email = "Email is required";
     if (!user.password) newErrors.password = "Password is required";
     if (user.password && user.password.length < 8)
@@ -52,32 +50,31 @@ function Login() {
       return;
     }
 
-  try {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const res = await axiosBase.post("/users/login", user);
+      const res = await axiosBase.post("/users/login", user);
+      const { data } = res;
 
-    const { data } = res;
+      // Save token
+      localStorage.setItem("token", data.token);
 
-    // Save token
-    localStorage.setItem("token", data.token);
+      // ✅ Update AuthContext with logged in user
+      setUser(data.user); // (assuming backend sends back user info)
 
-    setSnackbar({ open: true, message: data.msg, severity: "success" });
-    setUser({ email: "", password: "" });
-    setErrors({});
-
-    // console.log("User logged in:", data);
-    navigate("/"); // after successful login
-  } catch (err) {
-    setSnackbar({
-      open: true,
-      message: err.response?.data?.msg || "Something went wrong",
-      severity: "error",
-    });
-  } finally {
-    setLoading(false);
-  }
-
+      setSnackbar({ open: true, message: data.msg, severity: "success" });
+      setUserInput({ email: "", password: "" });
+      setErrors({});
+      navigate("/"); // redirect home
+    } catch (err) {
+      setSnackbar({
+        open: true,
+        message: err.response?.data?.msg || "Something went wrong",
+        severity: "error",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -93,7 +90,7 @@ function Login() {
       <Paper
         elevation={4}
         sx={{
-          p: { xs: 3, sm: 5 }, // responsive padding
+          p: { xs: 3, sm: 5 },
           borderRadius: 3,
           width: "100%",
         }}
@@ -141,21 +138,12 @@ function Login() {
             variant="contained"
             fullWidth
             disabled={loading}
-            sx={{
-              mt: 2,
-              py: 1.2,
-              fontWeight: "bold",
-              fontSize: "1rem",
-            }}
+            sx={{ mt: 2, py: 1.2, fontWeight: "bold", fontSize: "1rem" }}
           >
             {loading ? <CircularProgress size={24} color="inherit" /> : "Login"}
           </Button>
-          <Link to={'/register'}
-            variant="h4"
-            align="center"
-            gutterBottom
-            sx={{ color: "secondary.main"}}
-          >
+
+          <Link to="/register" style={{ textAlign: "center", marginTop: 10 }}>
             Create account
           </Link>
         </Box>

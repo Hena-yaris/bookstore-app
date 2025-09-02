@@ -5,13 +5,13 @@ import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 let Theme = createTheme({
   palette: {
     primary: {
-      main: "#1976d2", // your brand color (blue)
+      main: "#4E342E", // deep brown
     },
     secondary: {
-      main: "#f50057", // accent (pink/red)
+      main: "#FF7043", // warm orange
     },
     background: {
-      default: "#f9f9f9", // app background
+      default: "#FFF8E1", // paper-like background
     },
   },
   typography: {

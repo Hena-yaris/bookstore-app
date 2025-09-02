@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Navbar from "./components/NavBar";
 // import Unauthorized from "./pages/Unauthorized"; // optional page
 
 
@@ -14,6 +15,7 @@ import Register from "./pages/Register";
 function App() {
   return (
     <AuthProvider>
+      <Navbar/>
       <Routes>
         <Route
           path="/"
