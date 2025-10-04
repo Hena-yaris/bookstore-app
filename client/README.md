@@ -1,12 +1,61 @@
-# React + Vite
+📚 Book Inventory Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack app for managing and tracking books in a store.
+Built with React, Node.js, and JWT Authentication.
 
-Currently, two official plugins are available:
+🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    🔍 Search books by title, author, shelf, or price
 
-## Expanding the ESLint configuration
+    ➕ Add new books to the inventory
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+    ✏️ Edit or delete existing books (Admin only)
+
+    📦 Track book stock and availability
+
+    🔐 Role-based access (Admin & User)
+
+    🔄 Secure login with JWT
+
+🧰 Tech Stack
+
+    Frontend: React, Material-UI
+    Backend: Node.js, Express
+    Database: Mysql
+    Auth: JWT
+    State Management: Context API
+
+⚙️ Setup
+    # Clone repo
+    git clone https://github.com/Hena-yaris/bookstore-app.git
+    cd bookstore-app
+
+    # Install dependencies
+    cd client && npm install
+    cd ../server && npm install
+
+    # Add .env in /server
+    JWT_SECRET=your_jwt_secret
+    PORT=5000
+
+    # Run app
+    npm run dev
+
+🖼️ Preview
+
+
+
+🧠 What I Learned
+
+    Building secure authentication with JWT
+
+    Using protected routes in React
+
+    Handling CRUD with Node & Mysql
+
+    Managing state globally using Context API
+
+👨‍💻 Author
+
+Henok
+📍 Ethiopia | 🌐 LinkedIn

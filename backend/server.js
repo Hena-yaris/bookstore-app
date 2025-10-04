@@ -14,9 +14,14 @@ app.use(cors());
 const userRoute = require('./routes/userRoute');
 app.use('/api/users',userRoute);
 
-//staff routes middleware file
-const staffRoute =require('./routes/adding')
-app.use('/book',staffRoute);
+//admin routes middleware file
+const adminRoute = require('./routes/adminRoute');
+ app.use('/api/admin', adminRoute);
+
+
+ //admin-Staff  routes middleware file
+const adminStaffRoute = require('./routes/adminStaffRoute');
+ app.use('/api/adminStaff', adminStaffRoute);
 
 
 

@@ -12,6 +12,7 @@ router.post("/register", register);
 
 router.post("/login",login);
 
+// Public (or for all logged-in users)
 router.get("/check", authMiddleware,checkUser);
 
 

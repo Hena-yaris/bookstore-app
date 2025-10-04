@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"; // add useContext
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosBase from "../api/axiosBase";
 import {
@@ -11,18 +11,20 @@ import {
   Alert,
   CircularProgress,
   Paper,
+  Slide,
 } from "@mui/material";
-import { AuthContext } from "../context/AuthContext"; // ✅ import context
+import { AuthContext } from "../context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext); // ✅ get setUser from context
+  const { setUser } = useContext(AuthContext);
+  const [checked, setChecked] = useState(false); // for Slide animation
 
-  const [user, setUserInput] = useState({
-    email: "",
-    password: "",
-  });
+  useEffect(() => {
+    setChecked(true); // triggers slide-in on mount
+  }, []);
 
+  const [user, setUserInput] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [snackbar, setSnackbar] = useState({
@@ -38,13 +40,11 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newErrors = {};
     if (!user.email) newErrors.email = "Email is required";
     if (!user.password) newErrors.password = "Password is required";
     if (user.password && user.password.length < 8)
       newErrors.password = "Password must be at least 8 characters";
-
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
@@ -52,20 +52,16 @@ function Login() {
 
     try {
       setLoading(true);
-
       const res = await axiosBase.post("/users/login", user);
       const { data } = res;
 
-      // Save token
       localStorage.setItem("token", data.token);
-
-      // ✅ Update AuthContext with logged in user
-      setUser(data.user); // (assuming backend sends back user info)
+      setUser(data.user);
 
       setSnackbar({ open: true, message: data.msg, severity: "success" });
       setUserInput({ email: "", password: "" });
       setErrors({});
-      navigate("/"); // redirect home
+      navigate("/");
     } catch (err) {
       setSnackbar({
         open: true,
@@ -87,67 +83,66 @@ function Login() {
         minHeight: "100vh",
       }}
     >
-      <Paper
-        elevation={4}
-        sx={{
-          p: { xs: 3, sm: 5 },
-          borderRadius: 3,
-          width: "100%",
-        }}
-      >
-        <Typography
-          variant="h4"
-          align="center"
-          gutterBottom
-          sx={{ color: "primary.main", fontWeight: "bold" }}
+      <Slide direction="down" in={checked} mountOnEnter unmountOnExit timeout={1000}>
+        <Paper
+          elevation={4}
+          sx={{ p: { xs: 3, sm: 5 }, borderRadius: 3, width: "100%" }}
         >
-          Login
-        </Typography>
-
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          display="flex"
-          flexDirection="column"
-          gap={2}
-        >
-          <TextField
-            label="Email"
-            name="email"
-            type="email"
-            fullWidth
-            value={user.email}
-            onChange={handleChange}
-            error={!!errors.email}
-            helperText={errors.email}
-          />
-
-          <TextField
-            label="Password"
-            name="password"
-            type="password"
-            fullWidth
-            value={user.password}
-            onChange={handleChange}
-            error={!!errors.password}
-            helperText={errors.password}
-          />
-
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            disabled={loading}
-            sx={{ mt: 2, py: 1.2, fontWeight: "bold", fontSize: "1rem" }}
+          <Typography
+            variant="h4"
+            align="center"
+            gutterBottom
+            sx={{ color: "primary.main", fontWeight: "bold" }}
           >
-            {loading ? <CircularProgress size={24} color="inherit" /> : "Login"}
-          </Button>
+            Login
+          </Typography>
 
-          <Link to="/register" style={{ textAlign: "center", marginTop: 10 }}>
-            Create account
-          </Link>
-        </Box>
-      </Paper>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            display="flex"
+            flexDirection="column"
+            gap={2}
+          >
+            <TextField
+              label="Email"
+              name="email"
+              type="email"
+              fullWidth
+              value={user.email}
+              onChange={handleChange}
+              error={!!errors.email}
+              helperText={errors.email}
+            />
+            <TextField
+              label="Password"
+              name="password"
+              type="password"
+              fullWidth
+              value={user.password}
+              onChange={handleChange}
+              error={!!errors.password}
+              helperText={errors.password}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              disabled={loading}
+              sx={{ mt: 2, py: 1.2, fontWeight: "bold", fontSize: "1rem" }}
+            >
+              {loading ? (
+                <CircularProgress size={24} color="inherit" />
+              ) : (
+                "Login"
+              )}
+            </Button>
+            <Link to="/register" style={{ textAlign: "center", marginTop: 10 }}>
+              Create account
+            </Link>
+          </Box>
+        </Paper>
+      </Slide>
 
       <Snackbar
         open={snackbar.open}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate ,Link} from "react-router-dom";
 import axiosBase from "../api/axiosBase";
 import {
@@ -15,10 +15,17 @@ import {
   Alert,
   CircularProgress,
   Paper,
+  Slide,
+  Slider
 } from "@mui/material";
 
 function Register() {
     const navigate = useNavigate();
+    const [checked, setChecked] = useState(false); // for Slide animation
+    
+      useEffect(() => {
+        setChecked(true); // triggers slide-in on mount
+      }, []);
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -88,108 +95,117 @@ function Register() {
         minHeight: "100vh",
       }}
     >
-      <Paper
-        elevation={4}
-        sx={{
-          p: { xs: 3, sm: 5 }, // responsive padding
-          borderRadius: 3,
-          width: "100%",
-        }}
+      <Slide
+        direction="up"
+        in={checked}
+        mountOnEnter
+        unmountOnExit
+        timeout={1000}
       >
-        <Typography
-          variant="h4"
-          align="center"
-          gutterBottom
-          sx={{ color: "primary.main", fontWeight: "bold" }}
+        <Paper
+          elevation={4}
+          sx={{
+            p: { xs: 3, sm: 5 }, // responsive padding
+            borderRadius: 3,
+            width: "100%",
+          }}
         >
-          Register
-        </Typography>
-
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          display="flex"
-          flexDirection="column"
-          gap={2}
-        >
-          <TextField
-            label="Username"
-            name="username"
-            fullWidth
-            value={user.username}
-            onChange={handleChange}
-            error={!!errors.username}
-            helperText={errors.username}
-          />
-
-          <TextField
-            label="Email"
-            name="email"
-            type="email"
-            fullWidth
-            value={user.email}
-            onChange={handleChange}
-            error={!!errors.email}
-            helperText={errors.email}
-          />
-
-          <TextField
-            label="Password"
-            name="password"
-            type="password"
-            fullWidth
-            value={user.password}
-            onChange={handleChange}
-            error={!!errors.password}
-            helperText={errors.password}
-          />
-
-          <FormControl fullWidth error={!!errors.role}>
-            <InputLabel>Role</InputLabel>
-            <Select
-              name="role"
-              value={user.role}
-              label="Role"
-              onChange={handleChange}
-            >
-              <MenuItem value="staff">Staff</MenuItem>
-              <MenuItem value="admin">Admin</MenuItem>
-            </Select>
-            {errors.role && (
-              <Typography variant="caption" color="error">
-                {errors.role}
-              </Typography>
-            )}
-          </FormControl>
-
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            disabled={loading}
-            sx={{
-              mt: 2,
-              py: 1.2,
-              fontWeight: "bold",
-              fontSize: "1rem",
-            }}
+          <Typography
+            variant="h4"
+            align="center"
+            gutterBottom
+            sx={{ color: "primary.main", fontWeight: "bold" }}
           >
-            {loading ? (
-              <CircularProgress size={24} color="inherit" />
-            ) : (
-              "Sign up"
-            )}
-          </Button>
-          <Link to={'/login'}
-                      variant="h4"
-                      align="center"
-                      gutterBottom
-                      sx={{ color: "secondary.main"}}
-                    >
-                      Login
-                    </Link>
-        </Box>
-      </Paper>
+            Register
+          </Typography>
+
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            display="flex"
+            flexDirection="column"
+            gap={2}
+          >
+            <TextField
+              label="Username"
+              name="username"
+              fullWidth
+              value={user.username}
+              onChange={handleChange}
+              error={!!errors.username}
+              helperText={errors.username}
+            />
+
+            <TextField
+              label="Email"
+              name="email"
+              type="email"
+              fullWidth
+              value={user.email}
+              onChange={handleChange}
+              error={!!errors.email}
+              helperText={errors.email}
+            />
+
+            <TextField
+              label="Password"
+              name="password"
+              type="password"
+              fullWidth
+              value={user.password}
+              onChange={handleChange}
+              error={!!errors.password}
+              helperText={errors.password}
+            />
+
+            <FormControl fullWidth error={!!errors.role}>
+              <InputLabel>Role</InputLabel>
+              <Select
+                name="role"
+                value={user.role}
+                label="Role"
+                onChange={handleChange}
+              >
+                <MenuItem value="staff">Staff</MenuItem>
+                <MenuItem value="admin">Admin</MenuItem>
+              </Select>
+              {errors.role && (
+                <Typography variant="caption" color="error">
+                  {errors.role}
+                </Typography>
+              )}
+            </FormControl>
+
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              disabled={loading}
+              sx={{
+                mt: 2,
+                py: 1.2,
+                fontWeight: "bold",
+                fontSize: "1rem",
+              }}
+            >
+              {loading ? (
+                <CircularProgress size={24} color="inherit" />
+              ) : (
+                "Sign up"
+              )}
+            </Button>
+            <Link
+              to={"/login"}
+              variant="h4"
+              align="center"
+              gutterBottom
+              sx={{ color: "secondary.main" }}
+            >
+              Login
+            </Link>
+          </Box>
+        </Paper>
+      </Slide>
 
       <Snackbar
         open={snackbar.open}
