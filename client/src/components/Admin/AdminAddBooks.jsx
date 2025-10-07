@@ -86,12 +86,16 @@ function AdminAddBooks() {
           return;
         }
 
+        const token = localStorage.getItem("token");
+
         try {
           const res = await axiosBase.post("/admin/add-books", {
             ...formData,
             price,
             stock,
-          });
+          },{headers:{
+            Authorization:`Bearer ${token}`,
+          }});
 
           
           // ❌ axios doesn’t have res.json()
@@ -114,7 +118,8 @@ function AdminAddBooks() {
 
           setErrors({ price: "", stock: "" }); // clear errors after success
         } catch (err) {
-          console.error(err);
+          console.error("Axios error:", err.response?.data || err.message);
+
           setSnackbar({
             open: true,
             message: err.response?.data?.message || "Failed to add book",

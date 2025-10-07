@@ -80,6 +80,7 @@ function AdminStaffSearch_Update() {
   const handleDelete = async () => {
     if(!bookToDelete) return;
 
+    const token = localStorage.getItem("token");
     try {
       const res = await axiosBase.delete(`/admin/books/${bookToDelete.book_id}`);
       setSnackbar({
@@ -204,7 +205,9 @@ function AdminStaffSearch_Update() {
       );
     }
 
+    const token = localStorage.getItem("token");
     try {
+
       const bodyData =
         user.role === "admin"
           ? {
@@ -216,16 +219,21 @@ function AdminStaffSearch_Update() {
               shelf_number: selectedBook.shelf_number,
               role: user.role,
             };
-      const res = await fetch(
-        `${API_URL}/admin/update_books/${selectedBook.book_id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(bodyData),
-        }
+            
+       
+
+      const res = await axiosBase.put(
+        `admin/update_books/${selectedBook.book_id}`,
+        bodyData, // ✅ send data directly
+        {headers: {
+          Authorization: `Bearer ${token}`
+        }}
       );
-      const data = await res.json();
+
+      // ✅ Axios automatically gives you parsed JSON in res.data
+      const data = res.data;
       alert(data.message);
+
       setResults(
         results.map((b) =>
           b.book_id === selectedBook.book_id ? selectedBook : b

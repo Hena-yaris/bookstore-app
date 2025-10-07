@@ -6,7 +6,7 @@ const {addBooks,priceShelf_update,removeBook} = require('../controller/adminCont
 const roleMiddleware = require('../middleware/roleMiddleware')
 
 
-router.post("/add-books",roleMiddleware('admin'), addBooks);
+router.post("/add-books",roleMiddleware("admin"), addBooks);
 router.put(
   "/update_books/:book_id",
   roleMiddleware("admin"),

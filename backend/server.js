@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 
+
 //users routes middleware file
 const userRoute = require('./routes/userRoute');
 app.use('/api/users',userRoute);
