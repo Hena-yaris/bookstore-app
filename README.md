@@ -85,13 +85,20 @@ The frontend client should open in your browser, and your API will be running on
 
 
 ###📸 Screenshots
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
-![alt text](image-4.png)
-![alt text](image-5.png)
-![alt text](image-6.png)
+<img width="1337" height="610" alt="image" src="https://github.com/user-attachments/assets/e52d9449-28d5-401b-b6b6-083a2616caaf" />
+<img width="1348" height="608" alt="image" src="https://github.com/user-attachments/assets/c9a7009d-030e-4aa0-a5e6-47ff2979efdc" />
+<img width="1350" height="585" alt="image" src="https://github.com/user-attachments/assets/d564a2fa-5d19-4237-a57c-de1cc835ed93" />
+<img width="1337" height="598" alt="image" src="https://github.com/user-attachments/assets/d5211c96-9f8f-43df-826a-a730d601d058" />
+<img width="1353" height="592" alt="image" src="https://github.com/user-attachments/assets/94ed9661-cfff-441e-9e9b-cd6c469b1dc7" />
+<img width="1328" height="597" alt="image" src="https://github.com/user-attachments/assets/78b704ec-4fb0-4c8f-b9ae-b5a7a6343b14" />
+<img width="1348" height="587" alt="image" src="https://github.com/user-attachments/assets/926fc11b-52b6-4059-b642-7e188d85f846" />
+
+
+
+
+
+
+
 
 ###🔮 Future Improvements
 We plan to enhance the application with the following features:
