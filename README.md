@@ -93,6 +93,15 @@ The frontend client should open in your browser, and your API will be running on
 ![alt text](image-5.png)
 ![alt text](image-6.png)
 
+![Registeration Screen Screenshot](./screenshots/image.png)
+![Admin Dashboard Screenshot](./screenshots/image1.png)
+![Admin CTA Screenshot](./screenshots/image2.png)
+![Admin AddBook Screenshot](./screenshots/image3.png)
+![Book list Screenshot](./screenshots/image4.png)
+![Search Books Screenshot](./screenshots/image5.png)
+![Edit Books Screenshot](./screenshots/image6.png)
+
+
 ###🔮 Future Improvements
 We plan to enhance the application with the following features:
 
