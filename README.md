@@ -94,7 +94,6 @@ The frontend client should open in your browser, and your API will be running on
 ![Search Books Screenshot](./screenshots/image5.png)
 ![Edit Books Screenshot](./screenshots/image6.png)
 
-
 ###🔮 Future Improvements
 We plan to enhance the application with the following features:
 
