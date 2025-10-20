@@ -1,94 +1,111 @@
-📚 Bookstore Inventory App
+# 📚 Bookstore Inventory Management System
 
-A full-stack Bookstore Inventory Management System built with React, Node.js, Express, and MySQL.
-It allows admins and staff to manage, search, and update books efficiently with role-based authentication.
+A robust **full-stack application** designed to manage a bookstore's inventory. It features **role-based authentication** for Admins and Staff, allowing for secure and efficient management of book stock, pricing, and details.
 
-🚀 Features
-👨‍💼 Admin
-    Add new books with title, author, genre, price, and shelf number.
+## 🌟 Technologies
 
-    Edit book details (price, shelf number, etc.).
+This project is built using a modern stack, leveraging the speed of React and the reliability of Node.js with MySQL for data persistence.
 
-    Delete books from inventory.
+| Category | Technology | Description |
+| :--- | :--- | :--- |
+| **Frontend** | **React (Vite)** | Fast, modern framework for a dynamic user interface. |
+| **UI Library** | **Material UI (MUI)** | Professional, responsive component library for a clean design. |
+| **Data Fetching** | **Axios, React Router** | Handling API calls and client-side navigation. |
+| **Backend** | **Node.js & Express** | Scalable server environment for API endpoints. |
+| **Database** | **MySQL** | Relational database for structured inventory data. |
+| **Security** | **JWT Authentication** | Secure token-based access control and **Role-based Access Control (RBAC)** middleware. |
 
-    View all books and their stock levels.
+***
 
-    Add new stock or manage quantities.
+## 🚀 Key Features
 
-👩‍💻 Staff
-    Search books by title, author, or genre.
+The application provides distinct user experiences based on role, ensuring security and proper access control.
 
-    Update shelf numbers.
+### 👨‍💼 Admin Features (Full Access)
 
-    View available stock and book information.
+| Functionality | Description |
+| :--- | :--- |
+| **Inventory CRUD** | Add new books (title, author, genre, price, stock). |
+| **Update Details** | Edit existing book details (price, shelf number, etc.). |
+| **Stock Management** | Add new stock or directly manage book quantities. |
+| **Deletion** | Remove books from the inventory entirely. |
+| **View All** | Comprehensive view of all books and their stock levels. |
 
-🧩 Tech Stack
-##Frontend (client)
+### 👩‍💻 Staff Features (Limited Access)
 
-    React (Vite)
+| Functionality | Description |
+| :--- | :--- |
+| **Search & Filter** | Efficiently search for books by **title, author, or genre**. |
+| **Location Update** | Update book shelf numbers. |
+| **Stock View** | View available stock and all book information. |
 
-    Material UI (MUI)
+***
 
-    Axios
+## ⚙️ Installation & Setup
 
-    React Router
+Follow these steps to get a copy of the project running on your local machine.
 
-    Backend (server)
+### 1. Clone the Repository
 
-    Node.js & Express
-
-    MySQL
-
-    JWT Authentication
-
-    Role-based Access Control (Middleware)
-
-⚙️ Installation
-1️⃣ Clone the repository
-git clone https://github.com/Hena-yaris/bookstore-app.git
+```bash
+git clone [https://github.com/Hena-yaris/bookstore-app.git]
 cd bookstore-app
 
-2️⃣ Install dependencies
 
-##Backend
+### 2. Install Dependencies
+Install dependencies for both the backend server and the frontend client.
 
-    cd backend
-    npm install
+```bash
+Backend
+cd backend
+npm install
+
+Frontend
+cd ../client
+npm install
+
+###3. Database Setup (MySQL)
+Create a MySQL database (e.g., bookstore_db).
+
+Update the connection details in your backend environment variables (or configuration file).
+
+Run migrations to create the necessary books and users tables.
+
+###4. Run the Application
+Execute the following commands from their respective directories to start the full-stack application.
+
+Backend
+# From the /backend directory
+node server.js 
+# (Note: Use your actual start command, e.g., 'node server.js' or 'npm start')
+Frontend
+# From the /client directory
+npm run dev
+The frontend client should open in your browser, and your API will be running on its configured port.
 
 
-##Frontend
+###📸 Screenshots
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
+![alt text](image-6.png)
 
-    cd ../client
-    npm install
+###🔮 Future Improvements
+We plan to enhance the application with the following features:
 
-3️⃣ Run the app
+Pagination & Sorting: Implement server-side pagination and sorting options for large book lists.
 
-##Backend
+Image Uploads: Add functionality for uploading and managing book cover images.
 
-    node .server
+Activity Logs: Implement user activity logs for tracking all inventory changes and history.
 
 
-##Frontend
+###🧑‍💻 Author
+Passionate about technology, design, and building efficient full-stack applications.
 
-    npm run dev
+[https://github.com/Hena-yaris]
 
-🧠 Authentication & Roles
 
-The app uses JWT tokens for authentication and a middleware that checks user roles before granting access:
-
-    Admin → Full access to all routes
-
-    Staff → Limited access to inventory functions
-
-🏁 Future Improvements
-
-    Add pagination and sorting for book lists.
-
-    Implement image uploads for book covers.
-
-    Add user activity logs and history.
-
-👨‍💻 Author
-
-Henok ✈️
-Passionate about technology, design, and building efficient full-stack apps.
