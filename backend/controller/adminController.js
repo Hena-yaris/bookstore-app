@@ -18,7 +18,7 @@ const addBooks = async (req, res) => {
     }
 
     // 1. Check for duplicates
-    const checkSql = `SELECT * FROM bookdetails WHERE title = ? AND author_name = ?`;
+    const checkSql = `SELECT * FROM bookDetails WHERE title = ? AND author_name = ?`;
     const [existing] = await pool.execute(checkSql, [title, author_name]);
 
     if (existing.length > 0) {
@@ -29,7 +29,7 @@ const addBooks = async (req, res) => {
 
     // 2. Insert new book
     const insertSql = `
-      INSERT INTO bookdetails (title, genre, price, author_name, shelf_number, stock)
+      INSERT INTO bookDetails (title, genre, price, author_name, shelf_number, stock)
       VALUES (?, ?, ?, ?, ?, ?)
     `;
     const [result] = await pool.execute(insertSql, [
@@ -79,7 +79,7 @@ const priceShelf_update = async (req,res) => {
 
   try {
     const [result] = await pool.execute(
-      `UPDATE bookdetails
+      `UPDATE bookDetails
        SET ${updates.join(", ")}
        WHERE book_id = ?`,
       params
@@ -107,7 +107,7 @@ const removeBook = async (req, res) => {
 
   try {
     const [result] = await pool.execute(
-      "DELETE FROM bookdetails WHERE book_id = ?",
+      "DELETE FROM bookDetails WHERE book_id = ?",
       [book_id]
     );
 

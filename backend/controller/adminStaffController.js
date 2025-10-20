@@ -10,7 +10,7 @@ const buy_stock = async (req, res) => {
 
     const [result] = await pool.execute(
       `
-      UPDATE bookdetails
+      UPDATE bookDetails
       SET stock = stock - ?
       WHERE book_id = ? AND stock >= ?
       `,
@@ -40,7 +40,7 @@ const add_stock = async (req, res) => {
     }
 
     const [result] = await pool.execute(
-      "UPDATE bookdetails SET stock = stock + ? WHERE book_id = ?",
+      "UPDATE bookDetails SET stock = stock + ? WHERE book_id = ?",
       [add, book_id]
     );
 
@@ -58,7 +58,7 @@ const add_stock = async (req, res) => {
 const searchBooks = async (req, res) => {
   try {
     const { title, genre } = req.query;
-    let sql = "SELECT * FROM bookdetails WHERE 1=1"; // ← correct table name
+    let sql = "SELECT * FROM bookDetails WHERE 1=1"; // ← correct table name
     const params = [];
 
     if (title) {
@@ -87,7 +87,7 @@ const searchBooks = async (req, res) => {
   const allList = async (req,res) => {
 
     try {
-        let sql = "SELECT title,genre,stock FROM bookdetails ORDER BY title ASC";
+        let sql = "SELECT title,genre,stock FROM bookDetails ORDER BY title ASC";
         const [rows] = await pool.execute(sql);
 
         res.status(200).json(rows)
