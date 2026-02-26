@@ -1,111 +1,222 @@
+
+import React from "react";
 import {
   Box,
   Typography,
   Container,
   Grid,
-  Paper,
-  Divider,
   Card,
   CardContent,
+  Avatar,
+  Chip,
+  Stack,
+  Paper, 
 } from "@mui/material";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import InventoryIcon from "@mui/icons-material/Inventory";
-import GroupIcon from "@mui/icons-material/Group";
+import StorageIcon from "@mui/icons-material/Storage";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import CodeIcon from "@mui/icons-material/Code";
 
 const About = () => {
+  const features = [
+    {
+      icon: <InventoryIcon sx={{ fontSize: 32 }} />,
+      title: "Inventory Control",
+      desc: "Comprehensive management for adding, updating, and tracking book stock levels in real-time.",
+      color: "#1976d2",
+    },
+    {
+      icon: <VerifiedUserIcon sx={{ fontSize: 32 }} />,
+      title: "RBAC Security",
+      desc: "Role-Based Access Control ensures Admins and Staff see only the data relevant to their level.",
+      color: "#2e7d32",
+    },
+    {
+      icon: <StorageIcon sx={{ fontSize: 32 }} />,
+      title: "Data Persistence",
+      desc: "Powered by MongoDB to ensure your library data is safe, scalable, and always accessible.",
+      color: "#ed6c02",
+    },
+    {
+      icon: <MenuBookIcon sx={{ fontSize: 32 }} />,
+      title: "Smart Filtering",
+      desc: "Advanced search algorithms to find books by ISBN, author, shelf location, or pricing instantly.",
+      color: "#9c27b0",
+    },
+  ];
 
-    const features = [
-      {
-        icon: <InventoryIcon color="primary" sx={{ fontSize: 40 }} />,
-        title: "Inventory Control",
-        desc: "Add, update, and manage book stock in real-time.",
-      },
-      {
-        icon: <GroupIcon color="primary" sx={{ fontSize: 40 }} />,
-        title: "Role-Based Access",
-        desc: "Separate dashboards for Admins and Users to ensure security.",
-      },
-      {
-        icon: <CodeIcon color="primary" sx={{ fontSize: 40 }} />,
-        title: "Modern Stack",
-        desc: "Built with React, Node.js, MongoDB, and Material UI.",
-      },
-      {
-        icon: <MenuBookIcon color="primary" sx={{ fontSize: 40 }} />,
-        title: "Smart Search",
-        desc: "Quickly find any book by title, author, or shelf number.",
-      },
-    ];
-
+  const techStack = [
+    "React 18",
+    "Material UI",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "Context API",
+  ];
 
   return (
-    <Container maxWidth="md" sx={{ py: 6 }}>
-      {/* Header */}
-      <Box textAlign="center" mb={5}>
-        <MenuBookIcon sx={{ fontSize: 60, color: "primary.main" }} />
-        <Typography variant="h4" fontWeight="bold" mt={2}>
-          About Our Book Inventory App
-        </Typography>
-        <Typography variant="subtitle1" color="text.secondary" mt={1}>
-          Manage, search, and track your entire bookstore effortlessly.
-        </Typography>
+    <Box sx={{ bgcolor: "#f8fafc", minHeight: "100vh", pb: 10 }}>
+      {/* Hero Header */}
+      <Box
+        sx={{
+          background: "linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%)",
+          pt: 10,
+          pb: 8,
+          textAlign: "center",
+          borderBottom: "1px solid rgba(0,0,0,0.05)",
+        }}
+      >
+        <Container maxWidth="md">
+          <Avatar
+            sx={{
+              width: 80,
+              height: 80,
+              bgcolor: "primary.main",
+              margin: "0 auto",
+              boxShadow: "0 10px 20px rgba(25, 118, 210, 0.2)",
+            }}
+          >
+            <MenuBookIcon sx={{ fontSize: 40 }} />
+          </Avatar>
+          <Typography
+            variant="h3"
+            fontWeight={800}
+            mt={3}
+            gutterBottom
+            sx={{ color: "#1e293b" }}
+          >
+            The Modern Library Solution
+          </Typography>
+          <Typography
+            variant="h6"
+            color="text.secondary"
+            sx={{ fontWeight: 400, maxWidth: "600px", margin: "0 auto" }}
+          >
+            A professional-grade inventory management system designed for speed,
+            security, and scalability.
+          </Typography>
+
+          <Stack
+            direction="row"
+            flexWrap="wrap"
+            justifyContent="center"
+            gap={1}
+            mt={4}
+          >
+            {techStack.map((tech) => (
+              <Chip
+                key={tech}
+                label={tech}
+                variant="outlined"
+                sx={{ fontWeight: 600, bgcolor: "white" }}
+              />
+            ))}
+          </Stack>
+        </Container>
       </Box>
 
-      <Divider sx={{ mb: 4 }} />
-
-      {/* Description */}
-      <Typography variant="body1" paragraph>
-        The <strong>Book Inventory Management App</strong> is designed to help
-        bookstores and libraries easily organize and track their book
-        collections. With a clean interface and powerful features, you can
-        quickly search books by title, author, shelf number, or price — and
-        always know how many are left in stock.
-      </Typography>
-
-      <Typography variant="body1" paragraph mt={6}>
-        Admins can also manage the entire catalog — adding, editing, or removing
-        books as needed. Whether you're running a small local bookstore or
-        managing a large library, this app keeps your inventory smart and
-        simple.
-      </Typography>
-
-      {/* Feature Grid */}
-      <Grid container spacing={3} mt={4} justifyContent="center">
-        {features.map((feature, index) => (
-          <Grid item xs={12} sm={6} key={index} display="flex">
-            <Card
-              sx={{
-                width: 250,
-                borderRadius: 3,
-                boxShadow: 3,
-                textAlign: "center",
-                "&:hover": { boxShadow: 6, transform: "scale(1.02)" },
-                transition: "0.3s",
-              }}
-            >
-              <CardContent>
-                {feature.icon}
-                <Typography>
+      <Container maxWidth="md" sx={{ mt: -4 }}>
+        {/* Features Grid */}
+        <Grid container spacing={4}>
+          {features.map((feature, index) => (
+            <Grid item xs={12} md={6} key={index}>
+              <Card
+                sx={{
+                  height: "100%",
+                  borderRadius: 4,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.03)",
+                  transition: "all 0.3s ease",
+                  border: "1px solid rgba(0,0,0,0.05)",
+                  "&:hover": {
+                    transform: "translateY(-8px)",
+                    boxShadow: "0 12px 24px rgba(0,0,0,0.08)",
+                  },
+                }}
+              >
+                <CardContent sx={{ p: 4, textAlign: "center" }}>
+                  <Box
+                    sx={{
+                      display: "inline-flex",
+                      p: 2,
+                      borderRadius: 3,
+                      bgcolor: `${feature.color}15`,
+                      color: feature.color,
+                      mb: 2,
+                    }}
+                  >
+                    {feature.icon}
+                  </Box>
+                  <Typography variant="h6" fontWeight={700} gutterBottom>
                     {feature.title}
-                </Typography>
-                <Typography>
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ lineHeight: 1.7 }}
+                  >
                     {feature.desc}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
 
-      {/* Footer */}
-      <Box textAlign="center" mt={6}>
-        <Typography variant="body2" color="text.secondary">
-          © {new Date().getFullYear()} Book Inventory App | Built with ❤️ by
-          Henok
-        </Typography>
-      </Box>
-    </Container>
+        {/* Narrative Section */}
+        <Box sx={{ mt: 10, px: { xs: 2, md: 4 } }}>
+          <Grid container spacing={6} alignItems="center">
+            <Grid item xs={12} md={6}>
+              <Typography variant="h4" fontWeight={800} gutterBottom>
+                Built for Efficiency
+              </Typography>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                paragraph
+                sx={{ fontSize: "1.1rem" }}
+              >
+                Whether you're managing a local bookstore or a private
+                collection, our app removes the friction of manual tracking. By
+                utilizing a <strong>MERN Stack</strong> architecture, we provide
+                a lightning-fast interface with reliable data persistence.
+              </Typography>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ fontSize: "1.1rem" }}
+              >
+                Our mission was to create a tool that is powerful enough for
+                admins but simple enough for staff to master in minutes.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 4,
+                  bgcolor: "primary.main",
+                  color: "white",
+                  borderRadius: 4,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                }}
+              >
+                <CodeIcon sx={{ fontSize: 40, mb: 2 }} />
+                <Typography variant="h5" fontWeight={700} gutterBottom>
+                  Developer Note
+                </Typography>
+                <Typography variant="body1" sx={{ opacity: 0.9 }}>
+                  This project was built to demonstrate clean code architecture,
+                  custom Material UI theming, and secure API integration.
+                  Explore the source code to see how we handle global state with
+                  Context API.
+                </Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 
