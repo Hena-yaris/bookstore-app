@@ -83,29 +83,45 @@ Frontend
 npm run dev
 The frontend client should open in your browser, and your API will be running on its configured port.
 
+```
 
-###📸 Screenshots
+### 📸 Screenshots
 
-![Registeration Screen Screenshot](./screenshots/image.png)
-![Admin Dashboard Screenshot](./screenshots/image1.png)
-![Admin CTA Screenshot](./screenshots/image2.png)
-![Admin AddBook Screenshot](./screenshots/image3.png)
-![Book list Screenshot](./screenshots/image4.png)
-![Search Books Screenshot](./screenshots/image5.png)
-![Edit Books Screenshot](./screenshots/image6.png)
+| Registration Screen | Admin Dashboard |
+|---|---|
+| ![](./screenshots/image.png) | ![](./screenshots/image-1.png) |
 
-###🔮 Future Improvements
+| Admin CTA | Add Book |
+|---|---|
+| ![](./screenshots/image-2.png) | ![](./screenshots/image-3.png) |
+
+| Book List | Search Books |
+|---|---|
+| ![](./screenshots/image-4.png) | ![](./screenshots/image-5.png) |
+
+| Edit Books |
+|---|
+| ![](./screenshots/image-6.png) |
+
+---
+
+### 🔮 Future Improvements
+
 We plan to enhance the application with the following features:
 
-Pagination & Sorting: Implement server-side pagination and sorting options for large book lists.
+- **Pagination & Sorting**  
+  Implement server-side pagination and sorting for large book collections.
 
-Image Uploads: Add functionality for uploading and managing book cover images.
+- **Image Uploads**  
+  Add support for uploading and managing book cover images.
 
-Activity Logs: Implement user activity logs for tracking all inventory changes and history.
+- **Activity Logs**  
+  Track inventory changes and maintain user activity history.
 
 
 ###🧑‍💻 Author
-Passionate about technology, design, and building efficient full-stack applications.
+
+ Building efficient full-stack applications.
 
 [https://github.com/Hena-yaris]
 
